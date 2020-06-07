@@ -15,35 +15,35 @@ export class App extends Component {
 
   state = { todos: [] };
 
-  componentDidMount() {
-    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=4')
-      .then(res => this.setState({todos: res.data}))
-  }
+  // componentDidMount() {
+  //   axios.get('https://jsonplaceholder.typicode.com/todos?_limit=4')
+  //     .then(res => this.setState({todos: res.data}))
+  // }
 
 // Before jsonplaceholder integration
-//   state = {
-//     todos: [{
-//         id: uuid.v4(),
-//         title: 'Wash bedsheets',
-//         completed: false
-//     },
-//     {
-//         id: uuid.v4(),
-//         title: 'Water the plants',
-//         completed: true
-//     },
-//     {
-//         id: uuid.v4(),
-//         title: 'Walk the dog lunch',
-//         completed: true
-//     },
-//     {
-//         id: uuid.v4(),
-//         title: 'Make lunch',
-//         completed: false
-//     }
-//     ]
-// };
+  state = {
+    todos: [{
+        id: uuid.v4(),
+        title: 'Wash bedsheets',
+        completed: false
+    },
+    {
+        id: uuid.v4(),
+        title: 'You can mark tasks as completed',
+        completed: true
+    },
+    {
+        id: uuid.v4(),
+        title: 'Or even delete them ',
+        completed: false
+    },
+    {
+        id: uuid.v4(),
+        title: 'Add your own tasks!',
+        completed: false
+    }
+    ]
+};
 
 toggleCompleteApp = (id) => {
     this.setState ({
@@ -57,25 +57,26 @@ toggleCompleteApp = (id) => {
 }
 
 deleteInApp = (id) => {
-  axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)  
-    .then(res => this.setState ({
+  // axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)  
+  //   .then(res => 
+      this.setState ({
         todos: [...this.state.todos.filter(todo =>
           todo.id !== id)]
-}))
+})  //)
 }
 
   addNewTodo = (title) => {
-    axios.post('https://jsonplaceholder.typicode.com/todos', {
-      title,
-      completed: false
-    })
-    .then(res => {
+    // axios.post('https://jsonplaceholder.typicode.com/todos', {
+    //   title,
+    //   completed: false
+    // })
+    // .then(res => {
       const newTodo = {
         id: uuid.v4(),
-        title: res.data.title,
-        completed: res.data.completed
+        title,
+        completed: false
       }      
-      this.setState({todos: [...this.state.todos, newTodo]})})
+      this.setState({todos: [...this.state.todos, newTodo]})  //})
   }
 
   render () {
